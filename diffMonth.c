@@ -75,25 +75,24 @@ int nombreDeJourDansUnMois(date moisSource){
     /*Je regarde si moisSource fait partie des mois contenant 31 jours*/
     for(int i = 0; i < 6;i++){
         if(moisSource.mois == listeMois_31[i]){
-            printf("31");
+            return 31;
         }
     }
 
     /*Je regarde si moisSource fait partie des mois contenant 30 jours*/
     for(int i = 0; i < 3;i++){
         if(moisSource.mois == listeMois_30[i]){
-            printf("30");
+            return 30;
         }
     }
 
     /*Je regarde si moisSource fait partie des mois contenant 28/29 jours*/
     for(int i = 0; i < 1;i++){
         if(moisSource.mois == listeMois_28_29[i]){
-            printf("28"); 
+            return 28;
         }
     }
 
-    return 0;
 }
 
 
@@ -104,12 +103,22 @@ int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     int annee;
     int mois;
     int jour;
-    
+    int jour2;
+    int nombreDeJourDansUnMoisTmp = nombreDeJourDansUnMois(dateLaPlusAncienne);
+
     annee = dateLaPlusAncienne.annee - dateLaPlusRecente.annee;
     mois = dateLaPlusAncienne.mois - dateLaPlusRecente.mois;
+    jour = dateLaPlusRecente.jour - nombreDeJourDansUnMoisTmp;
+    jour2 = dateLaPlusAncienne.jour - jour;
 
-    nombreDeJourDansUnMois(dateLaPlusAncienne);
-    nombreDeJourDansUnMois(dateLaPlusRecente);
+    if(jour < nombreDeJourDansUnMoisTmp){
+        mois = mois - 1;
+    }
+    if(jour > nombreDeJourDansUnMoisTmp){
+        mois = mois + 1;
+    }
+
+    printf("Il y a %d ans, %d mois et %d jours de decallage!\n",annee,mois,jour);
 
 }
 
