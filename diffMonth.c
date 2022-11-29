@@ -65,39 +65,83 @@ date sepMonth(char *dateUti){
     return dateDeDepart;
 }
 
-/*Je déclare mes define*/
-#define dateDebut printf("La date de debut est plus ancienne.\n");
-#define dateFin printf("La date de fin est plus ancienne.\n");
+int nombreDeJourDansUnMois(date moisSource){
 
-/*Déclaration de ma fonction diffMonth*/
+    /*Déclaration de mes variables*/
+    int listeMois_31[7] = {1,3,5,7,8,10,12};
+    int listeMois_30[4] = {4,6,9,11};
+    int listeMois_28_29[2] = {2};
+
+    /*Je regarde si moisSource fait partie des mois contenant 31 jours*/
+    for(int i = 0; i < 6;i++){
+        if(moisSource.mois == listeMois_31[i]){
+            printf("31");
+        }
+    }
+
+    /*Je regarde si moisSource fait partie des mois contenant 30 jours*/
+    for(int i = 0; i < 3;i++){
+        if(moisSource.mois == listeMois_30[i]){
+            printf("30");
+        }
+    }
+
+    /*Je regarde si moisSource fait partie des mois contenant 28/29 jours*/
+    for(int i = 0; i < 1;i++){
+        if(moisSource.mois == listeMois_28_29[i]){
+            printf("28"); 
+        }
+    }
+
+    return 0;
+}
+
+
+/*Fonction final permettant de calculer la différence en mois entre deux dates*/
+int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
+    
+    /*Déclaration de mes variables*/
+    int annee;
+    int mois;
+    int jour;
+    
+    annee = dateLaPlusAncienne.annee - dateLaPlusRecente.annee;
+    mois = dateLaPlusAncienne.mois - dateLaPlusRecente.mois;
+
+    nombreDeJourDansUnMois(dateLaPlusAncienne);
+    nombreDeJourDansUnMois(dateLaPlusRecente);
+
+}
+
+/*Déclaration de ma fonction putInOrder*/
 /*Permet de comparer deux dates et voir qui est la plus ancienne des deux*/
 
-int diffMonth(date dateDeDebut,date dateDeFin){
+void putInOrder(date dateDeDebut,date dateDeFin){
 
     /*On vérifie quelle date est la plus ancienne*/
     /*On compare les années*/
     if(dateDeDebut.annee < dateDeFin.annee){
-        dateDebut
+        diffMonth(dateDeDebut,dateDeFin);
     }
     if(dateDeDebut.annee > dateDeFin.annee){
-        dateFin
+        diffMonth(dateDeFin,dateDeDebut);
     }
     /*Si les années sont identiques*/
     if(dateDeDebut.annee == dateDeFin.annee){
         /*Alors on passe à la comparaison des mois*/
         if(dateDeDebut.mois < dateDeFin.mois){
-            dateDebut
+            diffMonth(dateDeDebut,dateDeFin);
         }
         if(dateDeDebut.mois > dateDeFin.mois){
-            dateFin
+            diffMonth(dateDeFin,dateDeDebut);
         }
         /*Si les mois sont identiques on compare les jours*/
         if(dateDeDebut.mois == dateDeFin.mois){
             if(dateDeDebut.jour < dateDeFin.jour){
-                dateDebut
+                diffMonth(dateDeDebut,dateDeFin);
             }
             if(dateDeDebut.jour > dateDeFin.jour){
-                dateFin
+                diffMonth(dateDeFin,dateDeDebut);
             }
             /*Si les jours sont égaux alors les deux dates sont identiques*/
             if(dateDeDebut.jour == dateDeFin.jour){
@@ -105,5 +149,8 @@ int diffMonth(date dateDeDebut,date dateDeFin){
             }
         }
     }
-    return 0;
+ 
 }
+
+
+

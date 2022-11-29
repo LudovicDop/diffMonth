@@ -10,7 +10,9 @@
         };
 
 /* Mes fonctions */
-int diffMonth(date dateDeDebut,date dateDeFin);
+int nombreDeJourDansUnMois(date moisSource);
+void putInOrder(date dateDeDebut,date dateDeFin);
+int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente);
 date sepMonth(char *date);
 
 

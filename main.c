@@ -33,7 +33,8 @@ int main(int argc, const char * argv[]) {
         printf("Affichage de la premiere date : \njour : %d\nmois : %d\nannee : %d\n",dateDeDepart.jour,dateDeDepart.mois,dateDeDepart.annee);
         printf("Affichage de la deuxieme date : \njour : %d\nmois : %d\nannee : %d\n",dateDeFin.jour,dateDeFin.mois,dateDeFin.annee);
         
-        diffMonth(dateDeDepart,dateDeFin);
+        /*Positionnement des dates dans l'ordre croissant*/
+        putInOrder(dateDeDepart,dateDeFin);
         
         /*Continuer ou quitter le programme*/
         printf("Taper 0 pour quitter ou 1 pour continuer le programme : ");
