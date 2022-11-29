@@ -102,23 +102,38 @@ int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     /*Déclaration de mes variables*/
     int annee;
     int mois;
-    int jour;
-    int jour2;
-    int nombreDeJourDansUnMoisTmp = nombreDeJourDansUnMois(dateLaPlusAncienne);
+    int jour_1;
+    int jour_2;
+    int jourTotal;
+    int nombreDeJourDansUnMoisDebut = nombreDeJourDansUnMois(dateLaPlusAncienne);
+    int nombreDeJourDansUnMoisFin = nombreDeJourDansUnMois(dateLaPlusRecente);
+    int moisDeDepart = dateLaPlusAncienne.mois;
+    int moisDeFin = dateLaPlusRecente.mois;
 
-    annee = dateLaPlusAncienne.annee - dateLaPlusRecente.annee;
-    mois = dateLaPlusAncienne.mois - dateLaPlusRecente.mois;
-    jour = dateLaPlusRecente.jour - nombreDeJourDansUnMoisTmp;
-    jour2 = dateLaPlusAncienne.jour - jour;
 
-    if(jour < nombreDeJourDansUnMoisTmp){
+    annee =  dateLaPlusRecente.annee - dateLaPlusAncienne.annee;
+    printf("%d et %d\n",moisDeDepart,moisDeFin);
+
+    if(moisDeFin > moisDeDepart){
+        printf("valide2");
+        mois =  dateLaPlusRecente.mois - dateLaPlusAncienne.mois;
+        mois = (annee * 12) - mois;
+    }
+    if(moisDeDepart > moisDeFin){
+        printf("valide");
+        mois =  dateLaPlusAncienne.mois - dateLaPlusRecente.mois;
+        mois = (annee * 12) - mois;
+    }
+
+    jour_1 = dateLaPlusRecente.jour - dateLaPlusAncienne.jour;
+
+    if(jour_1 < 0){
+        printf("okay");
+        jour_1 = jour_1 + nombreDeJourDansUnMoisFin;
         mois = mois - 1;
     }
-    if(jour > nombreDeJourDansUnMoisTmp){
-        mois = mois + 1;
-    }
 
-    printf("Il y a %d ans, %d mois et %d jours de decallage!\n",annee,mois,jour);
+    printf("Il y a %d mois et %d jours de decallage!\n",mois,jour_1);
 
 }
 
