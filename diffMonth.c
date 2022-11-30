@@ -73,21 +73,21 @@ int nombreDeJourDansUnMois(date moisSource){
     int listeMois_28_29[2] = {2};
 
     /*Je regarde si moisSource fait partie des mois contenant 31 jours*/
-    for(int i = 0; i < 6;i++){
+    for(int i = 0; i < 7;i++){
         if(moisSource.mois == listeMois_31[i]){
             return 31;
         }
     }
 
     /*Je regarde si moisSource fait partie des mois contenant 30 jours*/
-    for(int i = 0; i < 3;i++){
+    for(int i = 0; i < 4;i++){
         if(moisSource.mois == listeMois_30[i]){
             return 30;
         }
     }
 
     /*Je regarde si moisSource fait partie des mois contenant 28/29 jours*/
-    for(int i = 0; i < 1;i++){
+    for(int i = 0; i < 2;i++){
         if(moisSource.mois == listeMois_28_29[i]){
             return 28;
         }
@@ -110,26 +110,32 @@ int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     int moisDeDepart = dateLaPlusAncienne.mois;
     int moisDeFin = dateLaPlusRecente.mois;
 
-
+    /*On calcule la différence entre les années uniquement*/
     annee =  dateLaPlusRecente.annee - dateLaPlusAncienne.annee;
-    printf("%d et %d\n",moisDeDepart,moisDeFin);
 
+    /*On prend le mois le plus élevé puis on calcul la différence en prenant en compte les années dans le calcul*/
     if(moisDeFin > moisDeDepart){
-        printf("valide2");
-        mois =  dateLaPlusRecente.mois - dateLaPlusAncienne.mois;
-        mois = (annee * 12) - mois;
+        mois =  moisDeFin - moisDeDepart;
+        annee = annee * 12;
+        if(annee > 0){
+            mois = annee + mois;
+        }
+        if(annee == 0){
+            mois = mois;
+        }
     }
     if(moisDeDepart > moisDeFin){
-        printf("valide");
-        mois =  dateLaPlusAncienne.mois - dateLaPlusRecente.mois;
-        mois = (annee * 12) - mois;
+        mois =  moisDeDepart - moisDeFin;
+        mois = annee * 12 - mois;
     }
 
+    /*On soustrait le jour le plus récent (en observant la date au complet) au jour la plus ancien*/
     jour_1 = dateLaPlusRecente.jour - dateLaPlusAncienne.jour;
 
+    /*Si le résultat est négatif cela signifie qu'il faudra soustraire un mois dans le résultat puis calculer les jours restants*/
     if(jour_1 < 0){
-        printf("okay");
-        jour_1 = jour_1 + nombreDeJourDansUnMoisFin;
+        jour_1 = jour_1 + nombreDeJourDansUnMoisFin + nombreDeJourDansUnMoisDebut - nombreDeJourDansUnMoisFin;
+        printf("jour 1 : %d, %d\n",jour_1,nombreDeJourDansUnMoisFin);
         mois = mois - 1;
     }
 
