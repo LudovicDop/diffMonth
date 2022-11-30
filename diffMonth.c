@@ -71,40 +71,41 @@ int nombreDeJourDansUnMois(date moisSource){
     int listeMois_31[7] = {1,3,5,7,8,10,12};
     int listeMois_30[4] = {4,6,9,11};
     int listeMois_28_29[2] = {2};
+    int result;
 
     /*Je regarde si moisSource fait partie des mois contenant 31 jours*/
     for(int i = 0; i < 7;i++){
         if(moisSource.mois == listeMois_31[i]){
-            return 31;
+            result = 31;
         }
     }
 
     /*Je regarde si moisSource fait partie des mois contenant 30 jours*/
     for(int i = 0; i < 4;i++){
         if(moisSource.mois == listeMois_30[i]){
-            return 30;
+            result = 30;
         }
     }
 
     /*Je regarde si moisSource fait partie des mois contenant 28/29 jours*/
     for(int i = 0; i < 2;i++){
         if(moisSource.mois == listeMois_28_29[i]){
-            return 28;
+            result = 28;
         }
     }
+
+    return result;
 
 }
 
 
 /*Fonction final permettant de calculer la différence en mois entre deux dates*/
-int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
+void diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     
     /*Déclaration de mes variables*/
     int annee;
     int mois;
     int jour_1;
-    int jour_2;
-    int jourTotal;
     int nombreDeJourDansUnMoisDebut = nombreDeJourDansUnMois(dateLaPlusAncienne);
     int nombreDeJourDansUnMoisFin = nombreDeJourDansUnMois(dateLaPlusRecente);
     int moisDeDepart = dateLaPlusAncienne.mois;
@@ -125,7 +126,7 @@ int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
 
         /*Si année est > à 0*/
         if(annee > 0){
-            
+
             /*On ajoute les années au mois*/
             mois = annee + mois;
         }
@@ -134,7 +135,9 @@ int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     /*Si le mois de la date de départ est plus élevé que le mois de la date de fin*/
     if(moisDeDepart > moisDeFin){
 
+        /*On fait la différence entre les mois de la date de départ et les mois de la date de fin*/
         mois =  moisDeDepart - moisDeFin;
+        /*On ajoute les années au mois de départ*/
         mois = annee * 12 - mois;
     }
 

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "diffMonth.h"
 
-int main(int argc, const char * argv[]) {
+int main() {
 
     /*Déclaration de mes variables*/
     date dateDeDepart,dateDeFin;

@@ -3,6 +3,7 @@ CC = gcc
 EXEC = prog
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
 
 #Début de ma compilation avec les fichiers nécessaires
 all : $(EXEC)
@@ -11,7 +12,7 @@ all : $(EXEC)
 	$(CC) -o $@  -c $<
 
 $(EXEC) : $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 
 #Nettoyage de mes fichiers en .o
