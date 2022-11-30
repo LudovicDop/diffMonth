@@ -114,17 +114,26 @@ int diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     annee =  dateLaPlusRecente.annee - dateLaPlusAncienne.annee;
 
     /*On prend le mois le plus élevé puis on calcul la différence en prenant en compte les années dans le calcul*/
+    /*Si le mois de la date de fin est plus élevé que le mois de la date de départ*/
     if(moisDeFin > moisDeDepart){
+
+        /*On fait la différence entre les mois de la date de fin et les mois de la date de départ*/
         mois =  moisDeFin - moisDeDepart;
+
+        /*On calcul le nombre de mois dans X année(s)*/
         annee = annee * 12;
+
+        /*Si année est > à 0*/
         if(annee > 0){
+            
+            /*On ajoute les années au mois*/
             mois = annee + mois;
         }
-        if(annee == 0){
-            mois = mois;
-        }
+
     }
+    /*Si le mois de la date de départ est plus élevé que le mois de la date de fin*/
     if(moisDeDepart > moisDeFin){
+
         mois =  moisDeDepart - moisDeFin;
         mois = annee * 12 - mois;
     }
