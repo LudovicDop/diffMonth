@@ -147,7 +147,6 @@ void diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
     /*Si le résultat est négatif cela signifie qu'il faudra soustraire un mois dans le résultat puis calculer les jours restants*/
     if(jour_1 < 0){
         jour_1 = jour_1 + nombreDeJourDansUnMoisFin + nombreDeJourDansUnMoisDebut - nombreDeJourDansUnMoisFin;
-        printf("jour 1 : %d, %d\n",jour_1,nombreDeJourDansUnMoisFin);
         mois = mois - 1;
     }
 

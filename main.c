@@ -28,10 +28,6 @@ int main() {
 
         /*On envoie la deuxième date puis on vient la stocker dans ma structure dateDeFin*/
         dateDeFin = sepMonth(date2);
-
-        /*J'affiche mes variables date*/
-        printf("Affichage de la premiere date : \njour : %d\nmois : %d\nannee : %d\n",dateDeDepart.jour,dateDeDepart.mois,dateDeDepart.annee);
-        printf("Affichage de la deuxieme date : \njour : %d\nmois : %d\nannee : %d\n",dateDeFin.jour,dateDeFin.mois,dateDeFin.annee);
         
         /*Positionnement des dates dans l'ordre croissant*/
         putInOrder(dateDeDepart,dateDeFin);
