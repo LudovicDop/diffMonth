@@ -116,7 +116,7 @@ void diffMonth(date dateLaPlusAncienne,date dateLaPlusRecente){
 
     /*On prend le mois le plus élevé puis on calcul la différence en prenant en compte les années dans le calcul*/
     /*Si le mois de la date de fin est plus élevé que le mois de la date de départ*/
-    if(moisDeFin > moisDeDepart){
+    if(moisDeFin >= moisDeDepart){
 
         /*On fait la différence entre les mois de la date de fin et les mois de la date de départ*/
         mois =  moisDeFin - moisDeDepart;
